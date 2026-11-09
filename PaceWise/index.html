@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PaceWise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <main>
+    <section id="today" class="screen on" aria-labelledby="hToday">
+      <h1 id="hToday">Today</h1>
+      <ul id="todayList" class="list"></ul>
+      <hr>
+      <div class="timer">
+        <div id="clock" aria-live="off">25:00</div>
+        <p id="phase" class="mut">Focus</p>
+        <button id="startBtn" class="main" type="button">Start</button>
+        <div class="links">
+          <button id="pauseBtn" class="link mut" type="button">Pause</button>
+          <button id="resetBtn" class="link mut" type="button">Reset</button>
+        </div>
+        <p id="rounds" class="hint"></p>
+      </div>
+      <hr>
+      <h2>Small wins</h2>
+      <ul id="winsList" class="plain"></ul>
+    </section>
+
+    <section id="tasks" class="screen" aria-labelledby="hTasks">
+      <h1 id="hTasks">Tasks</h1>
+      <form id="taskForm" novalidate>
+        <div class="addrow">
+          <input id="taskName" type="text" placeholder="Add a task" maxlength="60" autocomplete="off" aria-label="Task name">
+          <button class="plus" type="submit" aria-label="Add task">+</button>
+        </div>
+        <p id="nameHint" class="hint" aria-live="polite"></p>
+        <button id="moreBtn" class="link ac" type="button">Add subject or due date</button>
+        <div id="moreFields" class="more" hidden>
+          <input id="taskSubject" type="text" placeholder="Subject (optional)" maxlength="30" aria-label="Subject">
+          <input id="taskDue" type="date" aria-label="Due date">
+        </div>
+      </form>
+      <nav id="filters" class="filters" aria-label="Filter tasks">
+        <button type="button" data-f="all" class="on">All</button>
+        <button type="button" data-f="pending">Pending</button>
+        <button type="button" data-f="done">Done</button>
+        <button type="button" data-f="due">Due soon</button>
+      </nav>
+      <ul id="taskList" class="list"></ul>
+    </section>
+
+    <section id="progress" class="screen" aria-labelledby="hProgress">
+      <h1 id="hProgress">Progress</h1>
+      <p class="mut small">This week</p>
+      <div id="stats" class="stats"></div>
+      <div id="bars" class="bars" aria-label="Focus minutes for the last 7 days"></div>
+      <hr>
+      <h2>How was today?</h2>
+      <div id="moods" class="moods">
+        <button type="button" data-m=":D" aria-label="Great">:D</button>
+        <button type="button" data-m=":)" aria-label="Good">:)</button>
+        <button type="button" data-m=":|" aria-label="Okay">:|</button>
+        <button type="button" data-m=":(" aria-label="Stressed">:(</button>
+        <button type="button" data-m=":'(" aria-label="Sad">:'(</button>
+      </div>
+      <p id="moodHint" class="hint" aria-live="polite"></p>
+    </section>
+
+    <section id="settings" class="screen" aria-labelledby="hSettings">
+      <h1 id="hSettings">Settings</h1>
+      <form id="setForm" novalidate>
+        <label class="row">Work minutes<input id="workMin" type="number" min="1" max="90" inputmode="numeric"></label>
+        <label class="row">Break minutes<input id="brkMin" type="number" min="1" max="30" inputmode="numeric"></label>
+        <p id="setHint" class="hint" aria-live="polite"></p>
+        <button id="saveSet" class="soft" type="submit">Save</button>
+      </form>
+      <hr>
+      <h2>Your data</h2>
+      <div class="row"><span>Backup file</span><button id="backupBtn" class="link ac" type="button">Save</button></div>
+      <div class="row"><span>Restore from file</span><button id="chooseBtn" class="link ac" type="button">Choose</button><input id="restoreFile" type="file" accept=".json,application/json" hidden></div>
+      <div class="row"><span>Clear all data</span><button id="clearBtn" class="link bad" type="button">Clear</button></div>
+    </section>
+  </main>
+
+  <p id="msg" role="status" aria-live="polite"></p>
+
+  <nav id="tabs" class="tabbar" aria-label="Main">
+    <button type="button" data-tab="today" class="on">Today</button>
+    <button type="button" data-tab="tasks">Tasks</button>
+    <button type="button" data-tab="progress">Progress</button>
+    <button type="button" data-tab="settings">Settings</button>
+  </nav>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
